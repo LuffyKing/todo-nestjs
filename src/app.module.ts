@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { getConnectionOptions } from 'typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { CaslModule } from './casl/casl.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
     TodoModule,
     UsersModule,
     AuthModule,
+    CaslModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,9 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { CreateUserDto } from './dto/create-user.dto';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
+
 describe('UsersController', () => {
-  let controller: UsersController;
+  let userController: UsersController;
+  let userService: UsersService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -11,10 +14,15 @@ describe('UsersController', () => {
       providers: [UsersService],
     }).compile();
 
-    controller = module.get<UsersController>(UsersController);
+    userController = module.get<UsersController>(UsersController);
+    userService = module.get<UsersService>(UsersService);
   });
-
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  describe('create', () => {
+    it('should create a user', () => {
+      const returnUser = {};
+      jest
+        .spyOn(userService, 'create')
+        .mockImplementation(() => 'abc');
+    });
   });
 });

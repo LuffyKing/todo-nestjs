@@ -25,7 +25,7 @@ export class TodoService {
         `The user with email ${email} does not exist`,
       );
     }
-    const todo = { ...createTodoDto, user };
+    const todo = { ...createTodoDto };
     return this.todoRepository.save(todo);
   }
 
@@ -43,6 +43,14 @@ export class TodoService {
         user,
       },
     });
+  }
+
+  async findAll() {
+    const user = await this.userRepository.find();
+    if (!user.length) {
+      throw new NotFoundException(`There are no todos`);
+    }
+    return user;
   }
 
   async findOne(id: number, user) {

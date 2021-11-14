@@ -1,5 +1,5 @@
-import { Todo } from 'src/todo/entities/todo.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Todo } from '../../todo/entities/todo.entity';
 
 @Entity()
 export class Users {
@@ -20,4 +20,7 @@ export class Users {
 
   @OneToMany(() => Todo, (todo) => todo.user)
   todos: Todo[];
+
+  @Column({ type: 'smallint', nullable: false })
+  permission_level: number;
 }
